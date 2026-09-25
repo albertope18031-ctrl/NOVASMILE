@@ -102,7 +102,7 @@ export function TriageWizard() {
             <Sparkles className="w-3.5 h-3.5" />
             Triage Digital Interactivo
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-nova-navy tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-nova-navy tracking-tight">
             Diagnóstico & Cotización en Línea
           </h2>
           <p className="text-sm sm:text-base text-nova-slate">

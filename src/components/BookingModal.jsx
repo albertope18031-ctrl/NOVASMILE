@@ -71,7 +71,7 @@ export function BookingModal({ isOpen, onClose, defaultService = '' }) {
             <Calendar className="w-3.5 h-3.5" />
             Agenda Oficial NovaSmile
           </div>
-          <h3 className="text-2xl font-extrabold text-nova-navy">Agendar Cita en Consultorio</h3>
+          <h3 className="font-serif text-2xl font-bold text-nova-navy">Agendar Cita en Consultorio</h3>
           <p className="text-xs text-nova-slate">
             Elige tu especialidad y horario preferido para coordinar tu cita en nuestro consultorio.
           </p>

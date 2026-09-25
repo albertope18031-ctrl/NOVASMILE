@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1, h2, h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    letter-spacing: -0.015em;
+  }
+}
+
 @layer utilities {
   /* Ocultar barra de scroll para navegación táctil limpia */
   .no-scrollbar::-webkit-scrollbar {

@@ -58,7 +58,7 @@ export function EmergencyModal({ isOpen, onClose }) {
             <AlertCircle className="w-4 h-4 text-red-600" />
             Canal de Urgencia Prioritaria
           </div>
-          <h3 className="text-2xl font-extrabold text-nova-navy">¿Presentas dolor o molestia dental?</h3>
+          <h3 className="font-serif text-2xl font-bold text-nova-navy">¿Presentas dolor o molestia dental?</h3>
           <p className="text-xs text-nova-slate">
             Nuestro equipo médico asigna prioridad inmediata a casos de dolor agudo, inflamación o fracturas dentales.
           </p>

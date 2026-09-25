@@ -16,7 +16,7 @@ export function TreatmentComparator({ onSelectTreatmentForBooking }) {
             <Sparkles className="w-3.5 h-3.5 text-nova-cyan" />
             Transparencia & Opciones Clínicas
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-nova-navy tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-nova-navy tracking-tight">
             Comparador de Tratamientos
           </h2>
           <p className="text-sm sm:text-base text-nova-slate">
@@ -48,7 +48,7 @@ export function TreatmentComparator({ onSelectTreatmentForBooking }) {
 
         {/* Subtítulo dinámico de la comparativa */}
         <div className="text-center mb-8">
-          <h3 className="text-xl sm:text-2xl font-bold text-nova-navy">{selectedCategory.title}</h3>
+          <h3 className="font-serif text-xl sm:text-2xl font-bold text-nova-navy">{selectedCategory.title}</h3>
           <p className="text-xs sm:text-sm text-nova-slate mt-1">{selectedCategory.subtitle}</p>
         </div>
 

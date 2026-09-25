@@ -19,7 +19,7 @@ export function ServicesSection({ onSelectService }) {
             <span className="w-2 h-2 rounded-full bg-nova-cyan" />
             Catálogo Clínico Integral
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-nova-navy tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-nova-navy tracking-tight">
             Especialidades Odontológicas de Alta Precisión
           </h2>
           <p className="text-sm sm:text-base text-nova-slate">
@@ -48,7 +48,7 @@ export function ServicesSection({ onSelectService }) {
                         <span className="text-xs font-bold text-nova-slate tracking-widest uppercase">
                           Especialidad {service.number}
                         </span>
-                        <h3 className="text-lg sm:text-xl font-extrabold text-nova-navy">
+                        <h3 className="font-serif text-lg sm:text-xl font-bold text-nova-navy">
                           {service.title}
                         </h3>
                       </div>

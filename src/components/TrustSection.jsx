@@ -18,7 +18,7 @@ export function TrustSection({ onOpenBooking }) {
             <ShieldCheck className="w-4 h-4" />
             Compromiso Clínico NovaSmile
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-nova-navy tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-nova-navy tracking-tight">
             Por Qué Nuestros Pacientes Confían en Nosotros
           </h2>
           <p className="text-sm sm:text-base text-nova-slate">
@@ -39,7 +39,7 @@ export function TrustSection({ onOpenBooking }) {
                   <div className="w-14 h-14 rounded-2xl bg-nova-navy-50 border border-nova-navy-100 flex items-center justify-center text-nova-navy">
                     <IconComponent className="w-7 h-7 text-nova-cyan" />
                   </div>
-                  <h3 className="text-xl font-bold text-nova-navy">{point.title}</h3>
+                  <h3 className="font-serif text-xl font-bold text-nova-navy">{point.title}</h3>
                   <p className="text-sm text-nova-slate leading-relaxed">{point.description}</p>
                 </div>
 
@@ -56,7 +56,7 @@ export function TrustSection({ onOpenBooking }) {
         {/* Callout de Contacto Directo */}
         <div className="mt-16 bg-nova-navy rounded-3xl p-8 sm:p-12 text-white shadow-card flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="space-y-2 text-center md:text-left">
-            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight">
               ¿Listo para iniciar tu plan de salud dental?
             </h3>
             <p className="text-sm sm:text-base text-nova-slate-light max-w-xl">
