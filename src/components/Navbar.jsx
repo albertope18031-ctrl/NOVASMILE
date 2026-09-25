@@ -45,24 +45,13 @@ export function Navbar({ onOpenBooking, onOpenEmergency, onScrollToTriage }) {
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-nova-slate-border shadow-card transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Logo Oficial NovaSmile */}
-          <a href="#" className="flex items-center gap-3 group">
+          <a href="#" className="flex items-center group py-1" aria-label="NovaSmile - Estética Dental & Bienestar">
             <img
               src="/logo-novasmile.jpg"
-              alt="NovaSmile Clínica Odontológica"
-              className="h-12 w-auto object-contain rounded-md transition-transform group-hover:scale-[1.02]"
-              onError={(e) => {
-                // Fallback elegante en caso de ruta relativa
-                e.target.style.display = 'none';
-              }}
+              alt="NovaSmile - Estética Dental & Bienestar"
+              className="h-12 sm:h-14 w-auto object-contain transition-transform group-hover:scale-[1.02]"
             />
-            <div className="flex flex-col">
-              <span className="text-xl font-bold tracking-tight text-nova-navy group-hover:text-nova-cyan transition-colors">
-                NOVA<span className="font-light text-nova-cyan">SMILE</span>
-              </span>
-              <span className="text-[10px] font-semibold uppercase tracking-widest text-nova-slate">
-                Odontología & Estética Dental
-              </span>
-            </div>
+            <span className="sr-only">NovaSmile - Estética Dental & Bienestar</span>
           </a>
 
           {/* Enlaces de Navegación (Escritorio - Header Boutique) */}

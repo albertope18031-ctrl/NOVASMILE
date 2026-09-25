@@ -12,6 +12,8 @@ import { Footer } from './components/Footer';
 import { BookingModal } from './components/BookingModal';
 import { EmergencyModal } from './components/EmergencyModal';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
+import { MobileQuickPills } from './components/MobileQuickPills';
+import { MobileBottomBar } from './components/MobileBottomBar';
 
 export function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -36,13 +38,16 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-nova-ice text-nova-text flex flex-col font-sans selection:bg-nova-mint selection:text-white">
+    <div className="min-h-screen bg-nova-ice text-nova-text flex flex-col font-sans selection:bg-nova-mint selection:text-white pb-16 lg:pb-0">
       {/* 1. HEADER BOUTIQUE: Menú minimalista + Botón "Valoración 3D" */}
       <Navbar
         onOpenBooking={() => handleOpenBooking()}
         onOpenEmergency={() => setIsEmergencyOpen(true)}
         onScrollToTriage={handleScrollToTransformations}
       />
+
+      {/* Sub-Nav de Píldoras de Salto Rápido para Móviles (Visible tras el Hero) */}
+      <MobileQuickPills />
 
       {/* Contenido Principal con la Nueva Estructura Editorial de 9 Bloques */}
       <main className="flex-grow">
@@ -108,6 +113,12 @@ export function App() {
 
       {/* Botón Flotante Global de WhatsApp */}
       <FloatingWhatsApp />
+
+      {/* Barra Inferior Fija de Conversión para Móvil (Zona del Pulgar) */}
+      <MobileBottomBar
+        onOpenBooking={() => handleOpenBooking()}
+        onOpenEmergency={() => setIsEmergencyOpen(true)}
+      />
     </div>
   );
 }

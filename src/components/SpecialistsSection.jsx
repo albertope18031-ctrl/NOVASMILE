@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { specialistsData } from '../data/dentalData';
-import { Award, ShieldCheck, GraduationCap, Calendar, Sparkles } from 'lucide-react';
+import { ShieldCheck, GraduationCap, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export function SpecialistsSection({ onOpenBooking }) {
+  const carouselRef = useRef(null);
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
+
+  const handleCarouselScroll = () => {
+    if (!carouselRef.current) return;
+    const { scrollLeft, clientWidth } = carouselRef.current;
+    if (clientWidth === 0) return;
+    const index = Math.round(scrollLeft / (clientWidth * 0.8));
+    setActiveCardIndex(Math.min(Math.max(index, 0), specialistsData.length - 1));
+  };
+
+  const scrollToCard = (index) => {
+    if (!carouselRef.current) return;
+    const cards = carouselRef.current.children;
+    if (cards[index]) {
+      cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  };
+
   return (
     <section id="especialistas" className="py-16 lg:py-24 bg-white border-b border-nova-slate-border scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Encabezado */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-nova-navy-50 text-nova-teal text-xs font-bold uppercase tracking-wider">
             <ShieldCheck className="w-4 h-4 text-nova-cyan" />
             Equipo Médico Titulado & Certificado
@@ -20,12 +39,16 @@ export function SpecialistsSection({ onOpenBooking }) {
           </p>
         </div>
 
-        {/* Grid de Especialistas */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Contenedor Adaptativo: Carrusel Táctil en Móvil / Cuadrícula de 3 en Escritorio */}
+        <div
+          ref={carouselRef}
+          onScroll={handleCarouselScroll}
+          className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 no-scrollbar px-1 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0"
+        >
           {specialistsData.map((doc, idx) => (
             <div
               key={idx}
-              className="bg-nova-ice rounded-3xl overflow-hidden border border-nova-slate-border shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between group"
+              className="w-[85vw] max-w-[340px] flex-shrink-0 snap-center md:w-auto md:max-w-none bg-nova-ice rounded-3xl overflow-hidden border border-nova-slate-border shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between group"
             >
               {/* Fotografía Profesional Cálida */}
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-200">
@@ -93,8 +116,29 @@ export function SpecialistsSection({ onOpenBooking }) {
           ))}
         </div>
 
+        {/* Indicadores de Puntos para Móvil */}
+        <div className="flex md:hidden flex-col items-center gap-2 mt-2">
+          <p className="text-[11px] text-nova-slate">
+            ⮜ Desliza para conocer al equipo ⮞
+          </p>
+          <div className="flex items-center gap-2">
+            {specialistsData.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => scrollToCard(idx)}
+                aria-label={`Ver especialista ${idx + 1}`}
+                className={`h-2 rounded-full transition-all ${
+                  activeCardIndex === idx
+                    ? 'w-6 bg-nova-navy'
+                    : 'w-2 bg-slate-300 hover:bg-slate-400'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
         {/* Llamado a la acción con los especialistas */}
-        <div className="mt-12 text-center">
+        <div className="mt-10 sm:mt-12 text-center">
           <button
             onClick={() => onOpenBooking()}
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-nova-cyan hover:bg-nova-cyan-hover text-white text-xs sm:text-sm font-bold rounded-xl shadow-md hover:shadow-cyan-glow transition-all active:scale-[0.98]"

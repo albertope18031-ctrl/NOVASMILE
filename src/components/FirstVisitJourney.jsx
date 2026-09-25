@@ -1,13 +1,32 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { firstVisitJourneySteps } from '../data/dentalData';
-import { Calendar, CheckCircle2, ArrowRight, ShieldCheck, Sparkles, Clock } from 'lucide-react';
+import { Calendar, CheckCircle2, ArrowRight, Sparkles, Clock } from 'lucide-react';
 
 export function FirstVisitJourney({ onOpenBooking }) {
+  const carouselRef = useRef(null);
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
+
+  const handleCarouselScroll = () => {
+    if (!carouselRef.current) return;
+    const { scrollLeft, clientWidth } = carouselRef.current;
+    if (clientWidth === 0) return;
+    const index = Math.round(scrollLeft / (clientWidth * 0.8));
+    setActiveCardIndex(Math.min(Math.max(index, 0), firstVisitJourneySteps.length - 1));
+  };
+
+  const scrollToCard = (index) => {
+    if (!carouselRef.current) return;
+    const cards = carouselRef.current.children;
+    if (cards[index]) {
+      cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  };
+
   return (
     <section id="primera-cita" className="py-16 lg:py-24 bg-nova-ice border-b border-nova-slate-border scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Encabezado */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-nova-slate-border text-nova-teal text-xs font-bold uppercase tracking-wider shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-nova-cyan" />
             El Viaje del Paciente
@@ -20,12 +39,16 @@ export function FirstVisitJourney({ onOpenBooking }) {
           </p>
         </div>
 
-        {/* Flujo Horizontal en 3 Pasos */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+        {/* Flujo en 3 Pasos: Carrusel en Móvil / Cuadrícula de 3 en Escritorio */}
+        <div
+          ref={carouselRef}
+          onScroll={handleCarouselScroll}
+          className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 no-scrollbar px-1 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 relative"
+        >
           {firstVisitJourneySteps.map((step, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-3xl p-8 border border-nova-slate-border shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between space-y-6 relative group"
+              className="w-[85vw] max-w-[340px] flex-shrink-0 snap-center md:w-auto md:max-w-none bg-white rounded-3xl p-6 sm:p-8 border border-nova-slate-border shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between space-y-6 relative group"
             >
               {/* Encabezado de la tarjeta con número y duración */}
               <div className="space-y-4">
@@ -57,8 +80,29 @@ export function FirstVisitJourney({ onOpenBooking }) {
           ))}
         </div>
 
+        {/* Indicadores de Puntos para Móvil */}
+        <div className="flex md:hidden flex-col items-center gap-2 mt-2">
+          <p className="text-[11px] text-nova-slate">
+            ⮜ Desliza para recorrer las 3 etapas ⮞
+          </p>
+          <div className="flex items-center gap-2">
+            {firstVisitJourneySteps.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => scrollToCard(idx)}
+                aria-label={`Ver paso ${idx + 1}`}
+                className={`h-2 rounded-full transition-all ${
+                  activeCardIndex === idx
+                    ? 'w-6 bg-nova-navy'
+                    : 'w-2 bg-slate-300 hover:bg-slate-400'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
         {/* Botón de Acción Centrado */}
-        <div className="mt-12 text-center">
+        <div className="mt-10 sm:mt-12 text-center">
           <button
             onClick={onOpenBooking}
             className="inline-flex items-center gap-2.5 px-8 py-4 bg-nova-navy hover:bg-nova-teal text-white text-sm sm:text-base font-bold rounded-xl shadow-md transition-all active:scale-[0.98] group"

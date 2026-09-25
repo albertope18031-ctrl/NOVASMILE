@@ -10,23 +10,14 @@ export function Footer({ onScrollToTriage, onOpenBooking, onOpenEmergency }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
           {/* Columna Marca & Identidad */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-3">
-              <img
-                src="/logo-novasmile.jpg"
-                alt="NovaSmile Odontología"
-                className="h-10 w-auto object-contain rounded bg-white p-1"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-              />
-              <div>
-                <span className="text-xl font-bold tracking-tight text-white">
-                  NOVA<span className="text-nova-cyan font-light">SMILE</span>
-                </span>
-                <p className="text-[10px] uppercase tracking-widest text-nova-slate-light">
-                  {clinicInfo.tagline}
-                </p>
-              </div>
+            <div className="flex items-center">
+              <a href="#" className="inline-block bg-white px-3 py-1.5 rounded-xl shadow-sm hover:opacity-95 transition-opacity" aria-label="NovaSmile - Estética Dental & Bienestar">
+                <img
+                  src="/logo-novasmile.jpg"
+                  alt="NovaSmile - Estética Dental & Bienestar"
+                  className="h-11 sm:h-12 w-auto object-contain"
+                />
+              </a>
             </div>
 
             <p className="text-xs sm:text-sm text-nova-slate-light leading-relaxed">

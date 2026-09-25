@@ -2,8 +2,8 @@ import { CLINIC_WHATSAPP } from '../utils/whatsapp';
 
 export const clinicInfo = {
   name: "NovaSmile",
-  fullName: "NovaSmile - Clínica Odontológica & Estética Dental",
-  tagline: "Clínica Odontológica & Estética Dental",
+  fullName: "NovaSmile - Estética Dental & Bienestar",
+  tagline: "Estética Dental & Bienestar",
   whatsapp: CLINIC_WHATSAPP,
   whatsappDisplay: "+52 662 420 5643",
   phone: "662 420 5643",
