@@ -32,7 +32,11 @@ export function SpecialistsSection({ onOpenBooking }) {
                 <img
                   src={doc.image}
                   alt={doc.name}
+                  loading="lazy"
                   className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  onError={(e) => {
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=700&q=80";
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-nova-navy/80 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-4 right-4 text-white">

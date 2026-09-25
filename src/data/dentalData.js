@@ -378,7 +378,7 @@ export const beforeAfterCases = [
 export const patientGoalsData = [
   {
     id: "diseno-sonrisa",
-    tabLabel: "Quiero una sonrisa perfecta y simétrica",
+    tabLabel: "Diseño de Sonrisa",
     badge: "Diseño de Sonrisa",
     icon: "Sparkles",
     title: "Armonización estética con carillas de porcelana y resina inyectada",
@@ -395,7 +395,7 @@ export const patientGoalsData = [
   },
   {
     id: "alinear",
-    tabLabel: "Quiero alinear mis dientes sin que se note",
+    tabLabel: "Quiero Alinear",
     badge: "Ortodoncia Invisible",
     icon: "Smile",
     title: "Alineación predecible y discreta sin brackets ni alambres metálicos",
@@ -412,7 +412,7 @@ export const patientGoalsData = [
   },
   {
     id: "perdi-diente",
-    tabLabel: "Perdí piezas dentales y quiero comer tranquilo",
+    tabLabel: "Perdí un Diente",
     badge: "Implantes Digitales",
     icon: "ShieldCheck",
     title: "Recuperación fija permanente con cirugía guiada por computadora",
@@ -429,7 +429,7 @@ export const patientGoalsData = [
   },
   {
     id: "blanquear",
-    tabLabel: "Quiero blanquear y renovar mi esmalte",
+    tabLabel: "Quiero Blanquear",
     badge: "Blanqueamiento Led & Air-Flow",
     icon: "Sparkles",
     title: "Aclaramiento de 3 a 5 tonos en una sola sesión clínica",
@@ -446,7 +446,7 @@ export const patientGoalsData = [
   },
   {
     id: "dolor-urgencia",
-    tabLabel: "Tengo dolor agudo o molestia activa",
+    tabLabel: "Tengo Dolor",
     badge: "Urgencia Prioritaria",
     icon: "AlertCircle",
     title: "Alivio inmediato del dolor y diagnóstico prioritario en el día",
@@ -519,7 +519,7 @@ export const specialistsData = [
     experience: "12+ años de experiencia clínica",
     education: "Máster en Odontología Estética Avanzada y Rehabilitación, Universidad de Barcelona.",
     bio: "Especialista en técnicas mínimamente invasivas y carillas de porcelana. Su enfoque combina la armonización de las facciones con la preservación máxima del esmalte dental natural.",
-    image: "https://images.unsplash.com/photo-1594824813576-0f81d1163158?auto=format&fit=crop&w=700&q=80",
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=700&q=80",
     specialties: ["Diseño de Sonrisa 3D", "Carillas de Disilicato", "Gingivoplastia Láser"]
   },
   {

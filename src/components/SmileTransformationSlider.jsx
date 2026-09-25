@@ -1,16 +1,66 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { beforeAfterCases } from '../data/dentalData';
-import { Sparkles, Calendar, ShieldCheck, Clock, ArrowRight, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Sparkles, Calendar, ShieldCheck, Clock, ArrowRight, ChevronLeft, ChevronRight, Check, Columns, SlidersHorizontal } from 'lucide-react';
 
 export function SmileTransformationSlider({ onSelectCaseForBooking }) {
   const [activeCaseIndex, setActiveCaseIndex] = useState(0);
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [viewMode, setViewMode] = useState('slider'); // 'slider' | 'sideBySide'
   const containerRef = useRef(null);
 
   const activeCase = beforeAfterCases[activeCaseIndex];
 
-  const handleSliderChange = (e) => {
-    setSliderPosition(Number(e.target.value));
+  // Measure exact container width for pixel-perfect overflow clipping
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.clientWidth);
+      }
+    };
+    updateWidth();
+
+    let ro;
+    if (window.ResizeObserver) {
+      ro = new ResizeObserver(updateWidth);
+      ro.observe(containerRef.current);
+    }
+    window.addEventListener('resize', updateWidth);
+
+    return () => {
+      if (ro) ro.disconnect();
+      window.removeEventListener('resize', updateWidth);
+    };
+  }, [viewMode, activeCaseIndex]);
+
+  const updatePositionFromClientX = (clientX) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const percentage = Math.min(Math.max((x / rect.width) * 100, 0), 100);
+    setSliderPosition(Math.round(percentage));
+  };
+
+  const handlePointerDown = (e) => {
+    setIsDragging(true);
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch (_) {}
+    updatePositionFromClientX(e.clientX);
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isDragging) return;
+    updatePositionFromClientX(e.clientX);
+  };
+
+  const handlePointerUp = (e) => {
+    setIsDragging(false);
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch (_) {}
   };
 
   return (
@@ -26,7 +76,7 @@ export function SmileTransformationSlider({ onSelectCaseForBooking }) {
             Transformaciones Reales de Sonrisa
           </h2>
           <p className="text-sm sm:text-base text-nova-slate max-w-2xl mx-auto">
-            La prueba visual de nuestra odontología conservadora de alta precisión. Desliza para comparar el antes y después de pacientes atendidos en nuestras instalaciones.
+            La prueba visual de nuestra odontología conservadora de alta precisión. Compara el antes y después de pacientes atendidos en nuestras instalaciones.
           </p>
         </div>
 
@@ -61,72 +111,190 @@ export function SmileTransformationSlider({ onSelectCaseForBooking }) {
         {/* Tarjeta Principal del Slider & Ficha Técnica */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-nova-slate-border shadow-card">
           {/* Columna Izquierda: Visualizador Interactivo Antes / Después */}
-          <div className="lg:col-span-7 flex flex-col items-center">
-            <div
-              ref={containerRef}
-              className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-inner select-none border border-nova-slate-border"
-            >
-              {/* Imagen DESPUÉS (Base completa) */}
-              <img
-                src={activeCase.afterImage}
-                alt={`Resultado Después - ${activeCase.title}`}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute top-4 right-4 bg-nova-navy/85 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider z-20 border border-white/20 flex items-center gap-1.5 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-nova-cyan animate-pulse" />
-                Después (Resultado Final)
+          <div className="lg:col-span-7 flex flex-col items-center w-full">
+            {/* Barra de Control de Modo (Deslizador vs Lado a Lado) */}
+            <div className="flex items-center justify-between w-full mb-3 px-1">
+              <span className="text-[11px] font-bold text-nova-slate uppercase tracking-wider">
+                Comparativa Visual:
+              </span>
+              <div className="inline-flex p-1 rounded-xl bg-nova-ice border border-nova-slate-border shadow-xs">
+                <button
+                  onClick={() => setViewMode('slider')}
+                  className={`px-3 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    viewMode === 'slider'
+                      ? 'bg-nova-navy text-white shadow-xs'
+                      : 'text-nova-slate hover:text-nova-navy'
+                  }`}
+                >
+                  <SlidersHorizontal className="w-3.5 h-3.5 text-nova-cyan" />
+                  <span>Deslizador</span>
+                </button>
+                <button
+                  onClick={() => setViewMode('sideBySide')}
+                  className={`px-3 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                    viewMode === 'sideBySide'
+                      ? 'bg-nova-navy text-white shadow-xs'
+                      : 'text-nova-slate hover:text-nova-navy'
+                  }`}
+                >
+                  <Columns className="w-3.5 h-3.5" />
+                  <span>Lado a Lado</span>
+                </button>
               </div>
+            </div>
 
-              {/* Imagen ANTES (Recortada dinámicamente según sliderPosition) */}
-              <div
-                className="absolute inset-0 overflow-hidden z-10"
-                style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
-              >
-                <img
-                  src={activeCase.beforeImage}
-                  alt={`Estado Inicial Antes - ${activeCase.title}`}
-                  className="absolute inset-0 w-full h-full object-cover filter brightness-95"
-                />
-                <div className="absolute top-4 left-4 bg-black/75 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-white/20 shadow-sm">
-                  Antes (Estado Inicial)
-                </div>
-              </div>
+            {/* VISTA 1: DESLIZADOR INTERACTIVO CON CLIPPING DE ANCHO ROBUSTO */}
+            {viewMode === 'slider' ? (
+              <div className="w-full">
+                <div
+                  ref={containerRef}
+                  onPointerDown={handlePointerDown}
+                  onPointerMove={handlePointerMove}
+                  onPointerUp={handlePointerUp}
+                  onPointerCancel={handlePointerUp}
+                  className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-inner select-none border border-nova-slate-border cursor-ew-resize touch-none"
+                >
+                  {/* Imagen DESPUÉS (Base completa inferior) */}
+                  <img
+                    src={activeCase.afterImage}
+                    alt={`Resultado Después - ${activeCase.title}`}
+                    className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+                    loading="lazy"
+                  />
 
-              {/* Barra Divisoria Deslizable */}
-              <div
-                className="absolute top-0 bottom-0 z-30 pointer-events-none"
-                style={{ left: `${sliderPosition}%` }}
-              >
-                <div className="w-0.5 h-full bg-white shadow-2xl relative -translate-x-1/2">
-                  <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white text-nova-navy shadow-modal flex items-center justify-center border-2 border-nova-cyan">
-                    <div className="flex items-center text-nova-cyan text-xs font-black">
-                      <ChevronLeft className="w-4 h-4 -mr-1" />
-                      <ChevronRight className="w-4 h-4 -ml-1" />
+                  {/* Badge DESPUÉS (Fijo en esquina superior derecha, tamaño compacto anti-colisión) */}
+                  <div className="absolute top-3 right-3 bg-nova-navy/90 backdrop-blur-sm text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider z-20 border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
+                    <span className="w-1.5 h-1.5 rounded-full bg-nova-cyan animate-pulse" />
+                    Después
+                  </div>
+
+                  {/* Imagen ANTES (Contenedor con ancho dinámico por overflow: hidden - 100% compatible con móviles) */}
+                  <div
+                    className="absolute inset-y-0 left-0 overflow-hidden z-10 pointer-events-none select-none border-r-2 border-white shadow-lg"
+                    style={{ width: `${sliderPosition}%` }}
+                  >
+                    <img
+                      src={activeCase.beforeImage}
+                      alt={`Estado Inicial Antes - ${activeCase.title}`}
+                      className="absolute top-0 left-0 h-full object-cover filter brightness-95 pointer-events-none select-none"
+                      style={{
+                        width: containerWidth > 0 ? `${containerWidth}px` : '100%',
+                        maxWidth: 'none'
+                      }}
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* Badge ANTES (Fijo en esquina superior izquierda, tamaño compacto anti-colisión) */}
+                  <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-sm text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider z-20 border border-white/20 shadow-sm pointer-events-none">
+                    Antes
+                  </div>
+
+                  {/* Tirador Divisorio Deslizable */}
+                  <div
+                    className="absolute top-0 bottom-0 z-30 pointer-events-none"
+                    style={{ left: `${sliderPosition}%` }}
+                  >
+                    <div className="w-0.5 h-full bg-white shadow-2xl relative -translate-x-1/2">
+                      <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-nova-navy shadow-modal flex items-center justify-center border-2 border-nova-cyan">
+                        <div className="flex items-center text-nova-cyan text-xs font-black">
+                          <ChevronLeft className="w-3.5 h-3.5 -mr-1" />
+                          <ChevronRight className="w-3.5 h-3.5 -ml-1" />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
+
+                {/* Controles de Salto Rápido y Guía Táctil */}
+                <div className="flex flex-wrap items-center justify-between gap-2 mt-3 w-full px-1">
+                  <p className="text-[11px] sm:text-xs text-nova-slate flex items-center gap-1">
+                    <span>⮜ Arrastra sobre la foto para comparar ⮞</span>
+                  </p>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => setSliderPosition(100)}
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all border ${
+                        sliderPosition >= 95
+                          ? 'bg-nova-navy text-white border-nova-navy shadow-xs'
+                          : 'bg-white hover:bg-nova-ice text-nova-slate border-nova-slate-border'
+                      }`}
+                    >
+                      Solo Antes
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSliderPosition(50)}
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all border ${
+                        sliderPosition > 40 && sliderPosition < 60
+                          ? 'bg-nova-navy text-white border-nova-navy shadow-xs'
+                          : 'bg-white hover:bg-nova-ice text-nova-slate border-nova-slate-border'
+                      }`}
+                    >
+                      50 / 50
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSliderPosition(0)}
+                      className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all border ${
+                        sliderPosition <= 5
+                          ? 'bg-nova-navy text-white border-nova-navy shadow-xs'
+                          : 'bg-white hover:bg-nova-ice text-nova-slate border-nova-slate-border'
+                      }`}
+                    >
+                      Solo Después
+                    </button>
+                  </div>
+                </div>
               </div>
+            ) : (
+              /* VISTA 2: COMPARATIVA LADO A LADO (Sin superposiciones, fotos completas) */
+              <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Fotografía Antes */}
+                <div className="space-y-2">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-nova-slate-border shadow-sm">
+                    <img
+                      src={activeCase.beforeImage}
+                      alt={`Antes - ${activeCase.title}`}
+                      className="w-full h-full object-cover filter brightness-95"
+                      loading="lazy"
+                    />
+                    <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-sm text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider border border-white/20">
+                      Antes
+                    </div>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-nova-ice border border-nova-slate-border text-center">
+                    <span className="text-[10px] uppercase font-bold text-nova-slate block">Situación Inicial</span>
+                    <p className="text-xs text-nova-slate-dark font-medium mt-0.5 line-clamp-2">{activeCase.concern}</p>
+                  </div>
+                </div>
 
-              {/* Input Range Invisible para Control Táctil y Ratón */}
-              <input
-                type="range"
-                min="0"
-                max="100"
-                value={sliderPosition}
-                onChange={handleSliderChange}
-                aria-label="Deslizador de comparación antes y después"
-                className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-40"
-              />
-            </div>
-
-            {/* Microindicador de arrastre */}
-            <p className="text-xs text-nova-slate mt-3 flex items-center gap-1.5">
-              <span>⮜ Desliza horizontalmente para comparar la transformación ⮞</span>
-            </p>
+                {/* Fotografía Después */}
+                <div className="space-y-2">
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border-2 border-nova-cyan/50 shadow-sm">
+                    <img
+                      src={activeCase.afterImage}
+                      alt={`Después - ${activeCase.title}`}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute top-3 right-3 bg-nova-navy/90 backdrop-blur-sm text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider border border-white/20 flex items-center gap-1.5 shadow-sm">
+                      <span className="w-1.5 h-1.5 rounded-full bg-nova-cyan animate-pulse" />
+                      Resultado Final
+                    </div>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-white border border-nova-cyan/30 text-center shadow-xs">
+                    <span className="text-[10px] uppercase font-bold text-nova-teal block">Resultado Alcanzado</span>
+                    <p className="text-xs text-nova-navy font-semibold mt-0.5 line-clamp-2">{activeCase.highlight}</p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Columna Derecha: Ficha Clínica del Caso & Conversión */}
-          <div className="lg:col-span-5 space-y-6 text-left">
+          <div className="lg:col-span-5 space-y-6 text-left w-full">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-nova-gold-light text-nova-gold-dark border border-nova-gold/30">

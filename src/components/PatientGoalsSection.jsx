@@ -32,27 +32,29 @@ export function PatientGoalsSection({ onSelectGoalForBooking }) {
           </p>
         </div>
 
-        {/* Pestañas de Objetivos del Paciente (Thumb-Zone Friendly) */}
-        <div className="flex justify-start sm:justify-center overflow-x-auto no-scrollbar gap-2 mb-10 pb-2">
-          {patientGoalsData.map((goal) => {
-            const isActive = goal.id === activeGoalId;
-            const TabIcon = iconMap[goal.icon] || Sparkles;
+        {/* Pestañas de Objetivos del Paciente (Responsive, centradas y sin recortes) */}
+        <div className="flex justify-center mb-10">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-4xl mx-auto px-2">
+            {patientGoalsData.map((goal) => {
+              const isActive = goal.id === activeGoalId;
+              const TabIcon = iconMap[goal.icon] || Sparkles;
 
-            return (
-              <button
-                key={goal.id}
-                onClick={() => setActiveGoalId(goal.id)}
-                className={`px-4 sm:px-5 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap flex items-center gap-2 border flex-shrink-0 ${
-                  isActive
-                    ? 'bg-nova-navy text-white border-nova-navy shadow-md ring-2 ring-nova-cyan/20'
-                    : 'bg-nova-ice hover:bg-white text-nova-slate hover:text-nova-navy border-nova-slate-border'
-                }`}
-              >
-                <TabIcon className={`w-4 h-4 ${isActive ? 'text-nova-cyan' : 'text-nova-slate'}`} />
-                <span>{goal.tabLabel}</span>
-              </button>
-            );
-          })}
+              return (
+                <button
+                  key={goal.id}
+                  onClick={() => setActiveGoalId(goal.id)}
+                  className={`px-4 sm:px-5 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2 border ${
+                    isActive
+                      ? 'bg-nova-navy text-white border-nova-navy shadow-md ring-2 ring-nova-cyan/20 scale-[1.02]'
+                      : 'bg-white hover:bg-nova-ice text-nova-slate hover:text-nova-navy border-nova-slate-border shadow-xs'
+                  }`}
+                >
+                  <TabIcon className={`w-4 h-4 ${isActive ? 'text-nova-cyan' : 'text-nova-teal'}`} />
+                  <span>{goal.tabLabel}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Panel Interactivo del Objetivo Seleccionado */}
