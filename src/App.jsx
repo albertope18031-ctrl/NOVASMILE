@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { TriageWizard } from './components/TriageWizard';
+import { SmileTransformationSlider } from './components/SmileTransformationSlider';
+import { PatientGoalsSection } from './components/PatientGoalsSection';
 import { TreatmentComparator } from './components/TreatmentComparator';
-import { ServicesSection } from './components/ServicesSection';
-import { TrustSection } from './components/TrustSection';
+import { AnxietyFreeSection } from './components/AnxietyFreeSection';
+import { FirstVisitJourney } from './components/FirstVisitJourney';
+import { SpecialistsSection } from './components/SpecialistsSection';
+import { BookingSection } from './components/BookingSection';
 import { Footer } from './components/Footer';
 import { BookingModal } from './components/BookingModal';
 import { EmergencyModal } from './components/EmergencyModal';
@@ -25,8 +28,8 @@ export function App() {
     setSelectedService('');
   };
 
-  const handleScrollToTriage = () => {
-    const el = document.getElementById('diagnostico');
+  const handleScrollToTransformations = () => {
+    const el = document.getElementById('transformaciones');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -34,49 +37,64 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-nova-ice text-nova-text flex flex-col font-sans selection:bg-nova-mint selection:text-white">
-      {/* Barra de Navegación Institucional */}
+      {/* 1. HEADER BOUTIQUE: Menú minimalista + Botón "Valoración 3D" */}
       <Navbar
         onOpenBooking={() => handleOpenBooking()}
         onOpenEmergency={() => setIsEmergencyOpen(true)}
-        onScrollToTriage={handleScrollToTriage}
+        onScrollToTriage={handleScrollToTransformations}
       />
 
-      {/* Contenido Principal */}
+      {/* Contenido Principal con la Nueva Estructura Editorial de 9 Bloques */}
       <main className="flex-grow">
-        {/* Sección Hero con Propuesta de Valor */}
+        {/* 2. HERO EDITORIAL HUMANO: Fotografía estética + Promesa "Sonrisas sin Dolor" */}
         <Hero
           onOpenBooking={() => handleOpenBooking()}
-          onScrollToTriage={handleScrollToTriage}
+          onScrollToTransformations={handleScrollToTransformations}
           onOpenEmergency={() => setIsEmergencyOpen(true)}
         />
 
-        {/* Triage / Diagnóstico en Línea (Motor de Conversión 4 Pasos) */}
-        <TriageWizard />
+        {/* 3. ANTES Y DESPUÉS INTERACTIVO (Smile Transformation Slider): La prueba visual reina */}
+        <SmileTransformationSlider
+          onSelectCaseForBooking={(caseTitle) => handleOpenBooking(caseTitle)}
+        />
 
-        {/* Comparador Interactivo de Tratamientos */}
+        {/* 4. MENÚ "POR TU OBJETIVO" (Patient-Centric Tabs): [Alinear] • [Blanquear] • [Perdí un diente]... */}
+        <PatientGoalsSection
+          onSelectGoalForBooking={(goalTitle) => handleOpenBooking(goalTitle)}
+        />
+
+        {/* 5. EL COMPARADOR DE ESTILO DE VIDA: Invisalign vs Brackets & Carillas de Porcelana vs Resina */}
         <TreatmentComparator
           onSelectTreatmentForBooking={(treatmentName) => handleOpenBooking(treatmentName)}
         />
 
-        {/* Catálogo de 4 Especialidades Clínicas */}
-        <ServicesSection
-          onSelectService={(serviceTitle) => handleOpenBooking(serviceTitle)}
-        />
-
-        {/* Compromiso Médico, Garantías & Tecnologías */}
-        <TrustSection
+        {/* 6. PROTOCOLO LIBRE DE ANSIEDAD: Tecnología & Confort 3D (Escáner sin pastas + Anestesia digital) */}
+        <AnxietyFreeSection
           onOpenBooking={() => handleOpenBooking()}
         />
+
+        {/* 7. "CÓMO ES TU PRIMERA CONSULTA": El viaje del paciente en 3 etapas simples */}
+        <FirstVisitJourney
+          onOpenBooking={() => handleOpenBooking()}
+        />
+
+        {/* 8. CONOCE A TUS ESPECIALISTAS: Humanizar la medicina con nombres, fotos y cédulas */}
+        <SpecialistsSection
+          onOpenBooking={() => handleOpenBooking()}
+        />
+
+        {/* 9. RESERVA DE VALORACIÓN CON SELECCIÓN DE MOTIVO: Módulo interactivo en página */}
+        <BookingSection />
       </main>
 
-      {/* Pie de Página Institucional Deep Navy */}
+      {/* Pie de Página Institucional Boutique Deep Emerald */}
       <Footer
-        onScrollToTriage={handleScrollToTriage}
+        onScrollToTriage={handleScrollToTransformations}
         onOpenBooking={() => handleOpenBooking()}
         onOpenEmergency={() => setIsEmergencyOpen(true)}
       />
 
-      {/* Modales Interactivos */}
+      {/* Modales Interactivos Flotantes */}
       <BookingModal
         isOpen={isBookingOpen}
         onClose={handleCloseBooking}

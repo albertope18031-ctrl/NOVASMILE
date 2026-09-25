@@ -39,46 +39,64 @@ export function Footer({ onScrollToTriage, onOpenBooking, onOpenEmergency }) {
             </div>
           </div>
 
-          {/* Columna Especialidades Rápidas */}
+          {/* Columna Navegación Boutique */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white">
-              Especialidades
+              Navegación Boutique
             </h4>
             <ul className="space-y-2 text-xs text-nova-slate-light">
-              {specialtiesData.map((s) => (
-                <li key={s.id}>
-                  <a href="#especialidades" className="hover:text-nova-cyan transition-colors">
-                    {s.title}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a href="#transformaciones" className="hover:text-nova-cyan transition-colors">
+                  Antes y Después (Casos Clínicos)
+                </a>
+              </li>
+              <li>
+                <a href="#objetivos" className="hover:text-nova-cyan transition-colors">
+                  Tratamientos por tu Objetivo
+                </a>
+              </li>
+              <li>
+                <a href="#comparador" className="hover:text-nova-cyan transition-colors">
+                  Comparador de Estilo de Vida
+                </a>
+              </li>
+              <li>
+                <a href="#confort-3d" className="hover:text-nova-cyan transition-colors">
+                  Protocolo Cero Dolor 3D
+                </a>
+              </li>
+              <li>
+                <a href="#primera-cita" className="hover:text-nova-cyan transition-colors">
+                  Cómo es tu Primera Consulta
+                </a>
+              </li>
             </ul>
           </div>
 
           {/* Columna Accesos Directos */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white">
-              Interacción Rápida
+              Atención Clínica
             </h4>
             <ul className="space-y-2 text-xs text-nova-slate-light">
               <li>
-                <button onClick={onScrollToTriage} className="hover:text-nova-cyan transition-colors flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-nova-cyan" />
-                  Diagnóstico en Línea
-                </button>
+                <a href="#especialistas" className="hover:text-nova-cyan transition-colors">
+                  Nuestros Especialistas
+                </a>
               </li>
               <li>
-                <button onClick={onOpenBooking} className="hover:text-nova-cyan transition-colors">
+                <a href="#agendar" className="hover:text-nova-cyan transition-colors flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-nova-cyan" />
+                  Valoración 3D
+                </a>
+              </li>
+              <li>
+                <button onClick={onOpenBooking} className="hover:text-nova-cyan transition-colors text-left">
                   Agendar en Consultorio
                 </button>
               </li>
               <li>
-                <a href="#comparador" className="hover:text-nova-cyan transition-colors">
-                  Comparador de Opciones
-                </a>
-              </li>
-              <li>
-                <button onClick={onOpenEmergency} className="text-red-400 hover:text-red-300 font-medium transition-colors">
+                <button onClick={onOpenEmergency} className="text-red-400 hover:text-red-300 font-medium transition-colors text-left">
                   Canal de Urgencias 24/7
                 </button>
               </li>

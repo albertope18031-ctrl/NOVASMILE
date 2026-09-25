@@ -65,41 +65,44 @@ export function Navbar({ onOpenBooking, onOpenEmergency, onScrollToTriage }) {
             </div>
           </a>
 
-          {/* Enlaces de Navegación (Escritorio) */}
-          <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-nova-navy">
-            <a href="#especialidades" className="hover:text-nova-cyan transition-colors">
-              Especialidades
-            </a>
-            <button
-              onClick={onScrollToTriage}
-              className="hover:text-nova-cyan transition-colors flex items-center gap-1 text-left"
-            >
+          {/* Enlaces de Navegación (Escritorio - Header Boutique) */}
+          <nav className="hidden lg:flex items-center gap-7 text-xs font-semibold text-nova-navy">
+            <a href="#transformaciones" className="hover:text-nova-cyan transition-colors flex items-center gap-1">
               <Sparkles className="w-3.5 h-3.5 text-nova-cyan" />
-              Diagnóstico en Línea
-            </button>
-            <a href="#comparador" className="hover:text-nova-cyan transition-colors">
-              Comparador de Tratamientos
+              Antes y Después
             </a>
-            <a href="#confianza" className="hover:text-nova-cyan transition-colors">
-              Garantía Médica
+            <a href="#objetivos" className="hover:text-nova-cyan transition-colors">
+              Por tu Objetivo
+            </a>
+            <a href="#comparador" className="hover:text-nova-cyan transition-colors">
+              Comparador
+            </a>
+            <a href="#confort-3d" className="hover:text-nova-cyan transition-colors">
+              Cero Dolor 3D
+            </a>
+            <a href="#primera-cita" className="hover:text-nova-cyan transition-colors">
+              Primera Cita
+            </a>
+            <a href="#especialistas" className="hover:text-nova-cyan transition-colors">
+              Especialistas
             </a>
           </nav>
 
-          {/* Acciones (CTA) */}
+          {/* Acciones (CTA Boutique) */}
           <div className="hidden sm:flex items-center gap-3">
             <button
               onClick={onOpenEmergency}
-              className="px-3.5 py-2 text-xs font-semibold text-nova-navy hover:text-red-700 bg-red-50 hover:bg-red-100 rounded-lg border border-red-200 transition-colors flex items-center gap-1.5"
+              className="px-3 py-2 text-xs font-semibold text-nova-navy hover:text-red-700 bg-red-50 hover:bg-red-100 rounded-lg border border-red-200 transition-colors flex items-center gap-1.5"
             >
               <AlertCircle className="w-3.5 h-3.5 text-red-500" />
-              Urgencias
+              <span>Urgencias</span>
             </button>
             <button
               onClick={onOpenBooking}
-              className="px-5 py-2.5 bg-nova-cyan hover:bg-nova-cyan-hover text-white text-sm font-semibold rounded-xl shadow-sm hover:shadow-cyan-glow transition-all active:scale-95 flex items-center gap-2"
+              className="px-4 sm:px-5 py-2.5 bg-nova-cyan hover:bg-nova-cyan-hover text-white text-xs sm:text-sm font-bold rounded-xl shadow-sm hover:shadow-cyan-glow transition-all active:scale-95 flex items-center gap-2"
             >
               <Calendar className="w-4 h-4" />
-              <span>Agendar Valoración</span>
+              <span>Valoración 3D</span>
             </button>
           </div>
 
@@ -115,37 +118,48 @@ export function Navbar({ onOpenBooking, onOpenEmergency, onScrollToTriage }) {
 
         {/* Menú Móvil Desplegable */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-nova-slate-border px-4 pt-3 pb-6 space-y-3 shadow-lg">
+          <div className="lg:hidden bg-white border-b border-nova-slate-border px-4 pt-3 pb-6 space-y-2 shadow-lg">
             <a
-              href="#especialidades"
+              href="#transformaciones"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2 text-base font-medium text-nova-navy hover:bg-nova-ice rounded-lg"
+              className="block px-3 py-2 text-sm font-semibold text-nova-navy hover:bg-nova-ice rounded-lg"
             >
-              Especialidades Clínicas
+              Antes y Después (Casos Clínicos)
             </a>
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                onScrollToTriage();
-              }}
-              className="w-full text-left px-3 py-2 text-base font-medium text-nova-cyan flex items-center gap-2 hover:bg-nova-ice rounded-lg"
+            <a
+              href="#objetivos"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block px-3 py-2 text-sm font-semibold text-nova-navy hover:bg-nova-ice rounded-lg"
             >
-              <Sparkles className="w-4 h-4" />
-              Diagnóstico en Línea (Triage)
-            </button>
+              Tratamientos por tu Objetivo
+            </a>
             <a
               href="#comparador"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2 text-base font-medium text-nova-navy hover:bg-nova-ice rounded-lg"
+              className="block px-3 py-2 text-sm font-semibold text-nova-navy hover:bg-nova-ice rounded-lg"
             >
-              Comparador de Tratamientos
+              Comparador de Estilo de Vida
             </a>
             <a
-              href="#confianza"
+              href="#confort-3d"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-2 text-base font-medium text-nova-navy hover:bg-nova-ice rounded-lg"
+              className="block px-3 py-2 text-sm font-semibold text-nova-navy hover:bg-nova-ice rounded-lg"
             >
-              Garantía Médica & Tecnología
+              Tecnología Cero Dolor & Cero Ansiedad
+            </a>
+            <a
+              href="#primera-cita"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block px-3 py-2 text-sm font-semibold text-nova-navy hover:bg-nova-ice rounded-lg"
+            >
+              Cómo es tu Primera Consulta
+            </a>
+            <a
+              href="#especialistas"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="block px-3 py-2 text-sm font-semibold text-nova-navy hover:bg-nova-ice rounded-lg"
+            >
+              Conoce a tus Especialistas
             </a>
 
             <div className="pt-3 border-t border-nova-slate-border flex flex-col gap-2">
@@ -154,9 +168,9 @@ export function Navbar({ onOpenBooking, onOpenEmergency, onScrollToTriage }) {
                   setIsMobileMenuOpen(false);
                   onOpenBooking();
                 }}
-                className="w-full py-3 bg-nova-cyan text-white text-center font-semibold rounded-xl shadow-sm"
+                className="w-full py-3 bg-nova-cyan text-white text-center font-bold text-sm rounded-xl shadow-sm"
               >
-                Agendar Cita en Consultorio
+                Reservar Valoración 3D
               </button>
               <button
                 onClick={() => {

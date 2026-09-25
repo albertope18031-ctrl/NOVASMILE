@@ -329,3 +329,226 @@ export const triageSteps = [
     ]
   }
 ];
+
+export const beforeAfterCases = [
+  {
+    id: "carillas-diseno",
+    title: "Diseño de Sonrisa & Carillas de Porcelana",
+    category: "Estética & Armonización Facial",
+    patient: "Mariana R., 29 años",
+    concern: "Desgaste en bordes incisales, color desigual y diastema central.",
+    solution: "6 carillas de disilicato de litio ultrafinas (técnica lente de contacto) sin tallado agresivo.",
+    duration: "2 citas (10 días)",
+    doctor: "Dra. Andrea Celaya Morales",
+    tag: "Caso Clínico Destacado",
+    beforeImage: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80",
+    afterImage: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80",
+    highlight: "Cierre milimétrico de espacios preservando el 100% del esmalte natural."
+  },
+  {
+    id: "ortodoncia-invisible",
+    title: "Ortodoncia Invisible 3D",
+    category: "Alineación sin Brackets Metálicos",
+    patient: "Alejandro V., 34 años",
+    concern: "Apiñamiento anteroinferior severo y rotación de caninos.",
+    solution: "Set de 18 alineadores transparentes con escaneo intraoral 3D.",
+    duration: "7 meses",
+    doctor: "Dra. Sofía Valenzuela Romero",
+    tag: "100% Discreto",
+    beforeImage: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=800&q=80",
+    afterImage: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80",
+    highlight: "Sin alambres metálicos, sin dolor y sin urgencias por brackets caídos."
+  },
+  {
+    id: "implante-zirconio",
+    title: "Implante Guiado & Corona Libre de Metal",
+    category: "Rehabilitación Digital Integral",
+    patient: "Héctor G., 48 años",
+    concern: "Pérdida de premolar superior con dificultad masticatoria y pérdida de soporte.",
+    solution: "Implante de titanio grado quirúrgico con cirugía guiada 3D + corona de zirconio multicapa.",
+    duration: "1 sesión quirúrgica (recuperación en 48 hrs)",
+    doctor: "Dr. Carlos Mendoza Vélez",
+    tag: "Cirugía Guiada 3D",
+    beforeImage: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80",
+    afterImage: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=800&q=80",
+    highlight: "Fuerza masticatoria recuperada con estética idéntica al diente biológico."
+  }
+];
+
+export const patientGoalsData = [
+  {
+    id: "diseno-sonrisa",
+    tabLabel: "Quiero una sonrisa perfecta y simétrica",
+    badge: "Diseño de Sonrisa",
+    icon: "Sparkles",
+    title: "Armonización estética con carillas de porcelana y resina inyectada",
+    whatYouFeel: "¿Tienes bordes desgastados, dientes desproporcionados o manchas que no salen con cepillado?",
+    solution: "Diseñamos tu sonrisa analizando las proporciones doradas de tu rostro. Las carillas cerámicas ultrafinas recubren el frente dental corrigiendo tono, tamaño y simetría sin desgaste agresivo.",
+    benefits: [
+      "Simulación digital 3D (mock-up): ves el resultado final en tu cara antes de comenzar",
+      "Material cerámico de alta densidad inmune a manchas de café, vino o tabaco",
+      "Brillo y translucidez idénticos al esmalte biológico de máxima gama"
+    ],
+    comfort: "Protocolo libre de dolor y mínimamente invasivo",
+    timeEstimate: "2 a 3 citas en 10 días",
+    ctaLabel: "Diseñar Mi Sonrisa 3D"
+  },
+  {
+    id: "alinear",
+    tabLabel: "Quiero alinear mis dientes sin que se note",
+    badge: "Ortodoncia Invisible",
+    icon: "Smile",
+    title: "Alineación predecible y discreta sin brackets ni alambres metálicos",
+    whatYouFeel: "¿Te frenan los brackets tradicionales, las llagas en la boca y la comida atrapada entre alambres?",
+    solution: "Fabricamos una serie de férulas termoplásticas transparentes que mueven tus dientes milimétricamente mediante fuerzas biológicas suaves calculadas por escáner 3D.",
+    benefits: [
+      "100% removibles para comer todo lo que te gusta y cepillarte con hilo normal",
+      "Prácticamente imperceptibles a distancia de conversación social y laboral",
+      "Cero emergencias por brackets rotos o alambres punzantes"
+    ],
+    comfort: "Presión biológica confortable sin dolor agudo",
+    timeEstimate: "Seguimiento cada 6 a 8 semanas",
+    ctaLabel: "Cotizar Alineadores Invisibles"
+  },
+  {
+    id: "perdi-diente",
+    tabLabel: "Perdí piezas dentales y quiero comer tranquilo",
+    badge: "Implantes Digitales",
+    icon: "ShieldCheck",
+    title: "Recuperación fija permanente con cirugía guiada por computadora",
+    whatYouFeel: "¿Masticas solo de un lado, evitas ciertos alimentos o sientes inseguridad al sonreír por un espacio vacío?",
+    solution: "Fijación milimétrica de titanio biocompatible guiada por tomografía 3D con micro-incisión (sin bisturí tosco). Se corona con disilicato o zirconio que iguala la fuerza y tono de tus dientes vecinos.",
+    benefits: [
+      "Cirugía guiada por computadora: menor tiempo quirúrgico y recuperación ultrarrápida",
+      "Recupera la fuerza masticatoria total sin tocar los dientes sanos contiguos",
+      "Garantía clínica de biocompatibilidad y larga duración"
+    ],
+    comfort: "Anestesia computarizada indolora sin entumecimiento facial excesivo",
+    timeEstimate: "Procedimiento guiado en 1 sesión",
+    ctaLabel: "Consultar Implante Dental"
+  },
+  {
+    id: "blanquear",
+    tabLabel: "Quiero blanquear y renovar mi esmalte",
+    badge: "Blanqueamiento Led & Air-Flow",
+    icon: "Sparkles",
+    title: "Aclaramiento de 3 a 5 tonos en una sola sesión clínica",
+    whatYouFeel: "¿Tus dientes lucen opacos o amarillentos y temes que el blanqueamiento te cause dolor o sensibilidad?",
+    solution: "Protocolo clínico Led Nova con gel bio-compatible enriquecido con desensibilizante activo y limpieza profunda Air-Flow con microesferas de bicarbonato para pulir sin abrasión.",
+    benefits: [
+      "Aclaramiento inmediato visible en una sesión de 60 minutos",
+      "Eliminación total de sarro interdental y manchas de café, té o vino",
+      "Formulado con tecnología anti-sensibilidad para confort inmediato"
+    ],
+    comfort: "100% indoloro, suave y no abrasivo",
+    timeEstimate: "1 sesión clínica de 60 minutos",
+    ctaLabel: "Agendar Blanqueamiento Led"
+  },
+  {
+    id: "dolor-urgencia",
+    tabLabel: "Tengo dolor agudo o molestia activa",
+    badge: "Urgencia Prioritaria",
+    icon: "AlertCircle",
+    title: "Alivio inmediato del dolor y diagnóstico prioritario en el día",
+    whatYouFeel: "¿Dolor punzante que no te deja dormir, inflamación en la encía, diente quebrado o corona caída?",
+    solution: "Canal prioritario sin esperas prolongadas. Diagnosticamos la causa exacta con radiovisiografía digital 3D y aplicamos anestesia computarizada indolora para erradicar el dolor en minutos.",
+    benefits: [
+      "Cita garantizada en el mismo día para casos de molestia aguda",
+      "Endodoncia mecanizada confortable en 1 sola cita para salvar tu diente",
+      "Seguimiento directo con el equipo médico vía WhatsApp"
+    ],
+    comfort: "Alivio de la molestia desde los primeros minutos",
+    timeEstimate: "Atención prioritaria inmediata",
+    ctaLabel: "Solicitar Guardia de Dolor"
+  }
+];
+
+export const anxietyFreeFeatures = [
+  {
+    icon: "Camera",
+    badge: "Cero Náuseas",
+    title: "Escáner Intraoral 3D de Alta Definición",
+    description: "Despídete para siempre de las cubetas con pastas frías de yeso o alginato de sabor amargo que causan náuseas y sensación de ahogo. Nuestra cámara óptica 3D captura 6,000 imágenes por segundo creando un gemelo digital exacto de tu boca en 3 minutos.",
+    highlight: "100% digital, limpio, higiénico y cómodo"
+  },
+  {
+    icon: "Syringe",
+    badge: "Imperceptible",
+    title: "Anestesia Digital Guiada por Computadora",
+    description: "El dolor de una inyección tradicional no proviene de la aguja, sino de la presión descontrolada con la que el líquido ingresa al tejido. Nuestro sistema administra la dosis gota a gota a velocidad biológica, haciendo que el adormecimiento sea imperceptible.",
+    highlight: "Sin pinchazo doloroso ni rostro hinchado por horas"
+  },
+  {
+    icon: "Coffee",
+    badge: "Confort Sensorial",
+    title: "Ambiente Zen & Relajación Clínica",
+    description: "Salas climatizadas con insonorización, aromaterapia sutil, música relajante y pantallas en el techo para disfrutar de tus contenidos preferidos mientras te atienden. En NovaSmile eliminamos el olor a hospital y los ruidos estridentes.",
+    highlight: "Trato médico pausado, humano y explicativo"
+  }
+];
+
+export const firstVisitJourneySteps = [
+  {
+    step: "01",
+    time: "15 min",
+    title: "Escaneo 3D y Diagnóstico Visual en Pantalla",
+    description: "Mapeamos cada milímetro de tus dientes con nuestro escáner óptico tridimensional. Proyectamos tu dentadura en una pantalla HD para que veas con tus propios ojos lo mismo que el especialista.",
+    detail: "Sin pastas incómodas en la boca y con mínima exposición radiológica digital."
+  },
+  {
+    step: "02",
+    time: "15 min",
+    title: "Simulación Digital de Sonrisa (Mock-Up)",
+    description: "Mediante software de diseño facial y biomimética, te mostramos en pantalla cómo quedará tu sonrisa terminada ANTES de tocar o intervenir cualquier pieza dental.",
+    detail: "Tú apruebas la forma, el tono y las proporciones en conjunto con el doctor."
+  },
+  {
+    step: "03",
+    time: "10 min",
+    title: "Presupuesto Cerrado 100% Transparente",
+    description: "Recibes tu plan de tratamiento por escrito con costos claros, tiempos de tratamiento y opciones de financiamiento con mensualidades sin intereses.",
+    detail: "Sin cargos ocultos, sin presiones comerciales y con total libertad de decisión."
+  }
+];
+
+export const specialistsData = [
+  {
+    name: "Dra. Andrea Celaya Morales",
+    role: "Directora Clínica & Odontología Estética",
+    license: "Céd. Prof. 8492011 • Céd. Esp. 1102934",
+    experience: "12+ años de experiencia clínica",
+    education: "Máster en Odontología Estética Avanzada y Rehabilitación, Universidad de Barcelona.",
+    bio: "Especialista en técnicas mínimamente invasivas y carillas de porcelana. Su enfoque combina la armonización de las facciones con la preservación máxima del esmalte dental natural.",
+    image: "https://images.unsplash.com/photo-1594824813576-0f81d1163158?auto=format&fit=crop&w=700&q=80",
+    specialties: ["Diseño de Sonrisa 3D", "Carillas de Disilicato", "Gingivoplastia Láser"]
+  },
+  {
+    name: "Dr. Carlos Mendoza Vélez",
+    role: "Cirujano Maxilofacial e Implantología Guiada",
+    license: "Céd. Prof. 7531982 • Céd. Esp. 9832104",
+    experience: "14+ años en cirugía reconstructiva",
+    education: "Especialidad en Cirugía Bucal y Maxilofacial, UNAM. Certificación Internacional en Cirugía Guiada 3D.",
+    bio: "Pionero en regeneración ósea y cirugía guiada por computadora sin dolor. Ha colocado más de 2,500 implantes exitosos con protocolos de carga inmediata y recuperación ultrarrápida.",
+    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=700&q=80",
+    specialties: ["Cirugía Guiada 3D", "Implantes de Titanio", "Regeneración Ósea"]
+  },
+  {
+    name: "Dra. Sofía Valenzuela Romero",
+    role: "Ortodoncia & Ortopedia Dentofacial",
+    license: "Céd. Prof. 9214753 • Céd. Esp. 1245890",
+    experience: "10+ años transformando oclusiones",
+    education: "Especialidad en Ortodoncia, Universidad Autónoma de Guadalajara. Proveedora Certificada Invisalign Diamond.",
+    bio: "Experta en alineación invisible para jóvenes y adultos. Planifica cada micro-movimiento dentario con biomecánica 3D para lograr sonrisas amplias, estables y saludables.",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=700&q=80",
+    specialties: ["Alineadores Invisibles", "Ortodoncia Autoligado", "Armonización Oclusal"]
+  }
+];
+
+export const bookingMotives = [
+  { id: "diseno-sonrisa", label: "✨ Diseño de Sonrisa / Carillas", badge: "Estética" },
+  { id: "ortodoncia-invisible", label: "😁 Alineación con Alineadores 3D", badge: "Invisible" },
+  { id: "implantes", label: "🦷 Reposición de Diente / Implantes", badge: "Funcional" },
+  { id: "blanqueamiento", label: "🌟 Blanqueamiento Led & Limpieza 3D", badge: "Brillo" },
+  { id: "urgencia", label: "⚠️ Molestia o Dolor Activo", badge: "Prioridad Hoy" }
+];
+

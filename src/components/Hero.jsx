@@ -2,7 +2,7 @@ import React from 'react';
 import { heroData } from '../data/dentalData';
 import { Sparkles, Calendar, ShieldCheck, CheckCircle2, ArrowRight, Activity, Smile } from 'lucide-react';
 
-export function Hero({ onOpenBooking, onScrollToTriage, onOpenEmergency }) {
+export function Hero({ onOpenBooking, onScrollToTransformations, onOpenEmergency }) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white via-nova-ice to-white pt-10 pb-16 lg:pt-16 lg:pb-24 border-b border-nova-slate-border">
       {/* Elementos decorativos sutiles de fondo (sin aspecto de IA) */}
@@ -35,11 +35,11 @@ export function Hero({ onOpenBooking, onScrollToTriage, onOpenEmergency }) {
             {/* Botones de Acción (CTA) */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
               <button
-                onClick={onScrollToTriage}
+                onClick={onScrollToTransformations}
                 className="px-7 py-4 bg-nova-cyan hover:bg-nova-cyan-hover text-white text-base font-bold rounded-xl shadow-md hover:shadow-cyan-glow transition-all active:scale-[0.98] flex items-center justify-center gap-2.5 group"
               >
                 <Sparkles className="w-5 h-5 transition-transform group-hover:scale-110" />
-                <span>{heroData.ctaPrimary}</span>
+                <span>Ver Transformaciones Reales</span>
                 <ArrowRight className="w-4 h-4 opacity-70 group-hover:translate-x-1 transition-transform" />
               </button>
 
@@ -48,7 +48,7 @@ export function Hero({ onOpenBooking, onScrollToTriage, onOpenEmergency }) {
                 className="px-7 py-4 bg-white hover:bg-nova-navy-50 text-nova-navy border-2 border-nova-navy text-base font-semibold rounded-xl transition-all active:scale-[0.98] flex items-center justify-center gap-2"
               >
                 <Calendar className="w-5 h-5 text-nova-navy" />
-                <span>{heroData.ctaSecondary}</span>
+                <span>Valoración 3D en Consultorio</span>
               </button>
             </div>
 
@@ -80,53 +80,57 @@ export function Hero({ onOpenBooking, onScrollToTriage, onOpenEmergency }) {
             </div>
           </div>
 
-          {/* Columna Visual / Tarjeta de Autoridad Médica & Métricas */}
-          <div className="lg:col-span-5">
-            <div className="relative bg-white rounded-3xl p-6 sm:p-8 border border-nova-slate-border shadow-card hover:shadow-card-hover transition-all">
-              {/* Encabezado de la Tarjeta Clínica */}
-              <div className="flex items-center justify-between pb-6 border-b border-nova-slate-border">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-nova-cyan-light flex items-center justify-center text-nova-cyan">
-                    <Smile className="w-7 h-7" />
-                  </div>
-                  <div>
-                    <h2 className="font-serif text-lg font-bold text-nova-navy">Estándar NovaSmile™</h2>
-                    <p className="text-xs text-nova-slate">Clínica Odontológica & Estética</p>
-                  </div>
+          {/* Columna Visual / Fotografía Editorial Humana & Tarjetas Flotantes */}
+          <div className="lg:col-span-5 relative">
+            {/* Contenedor de Fotografía Estética */}
+            <div className="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] bg-nova-ice">
+              <img
+                src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=80"
+                alt="Sonrisa estética y natural NovaSmile"
+                className="w-full h-full object-cover object-center filter brightness-[1.02]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-nova-navy/70 via-transparent to-transparent" />
+
+              {/* Badge Flotante Superior: Odontología Sin Dolor */}
+              <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-2xl shadow-card border border-nova-slate-border flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-nova-cyan animate-pulse" />
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-nova-slate block">
+                    Protocolo NovaSmile
+                  </span>
+                  <strong className="text-xs font-bold text-nova-navy">
+                    Sonrisas Libres de Dolor
+                  </strong>
                 </div>
-                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-nova-gold bg-nova-gold/10 border border-nova-gold/20 px-2.5 py-1 rounded-full shadow-sm">
-                  <ShieldCheck className="w-3.5 h-3.5 text-nova-gold" />
-                  Certificación 3D
-                </span>
               </div>
 
-              {/* Métricas Reales de Impacto */}
-              <div className="py-6 space-y-4">
-                {heroData.metrics.map((metric, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-start justify-between p-3.5 rounded-xl bg-nova-ice border border-nova-slate-border/60"
-                  >
-                    <div>
-                      <p className="text-2xl font-black text-nova-navy tracking-tight">{metric.value}</p>
-                      <p className="text-xs font-semibold text-nova-navy-700">{metric.label}</p>
-                    </div>
-                    <span className="text-[11px] text-nova-slate font-medium text-right max-w-[140px]">
-                      {metric.detail}
-                    </span>
+              {/* Badge Flotante Inferior Derecho: Certificación 3D */}
+              <div className="absolute bottom-6 right-4 left-4 sm:left-auto bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-card border border-nova-slate-border space-y-1">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-1.5 text-nova-gold font-bold text-xs">
+                    <ShieldCheck className="w-4 h-4 text-nova-gold" />
+                    <span>Estándar Clínico 3D</span>
                   </div>
-                ))}
+                  <span className="text-[11px] font-bold text-nova-teal bg-nova-navy-50 px-2 py-0.5 rounded">
+                    99.4% Sin Dolor
+                  </span>
+                </div>
+                <p className="text-[11px] text-nova-slate leading-snug">
+                  Escaneo intraoral sin pastas de yeso ni náuseas.
+                </p>
               </div>
+            </div>
 
-              {/* Botón Integrado de Prueba Rápida de Diagnóstico */}
-              <div className="pt-2">
-                <button
-                  onClick={onScrollToTriage}
-                  className="w-full py-3.5 px-4 bg-nova-navy hover:bg-nova-navy-800 text-white text-sm font-semibold rounded-xl flex items-center justify-center gap-2 transition-colors"
-                >
-                  <Activity className="w-4 h-4 text-nova-cyan" />
-                  <span>Realizar Diagnóstico Dental Gratuito (2 min)</span>
-                </button>
+            {/* Micro-métrica flotante adicional */}
+            <div className="hidden sm:flex absolute -bottom-5 -left-5 bg-nova-navy text-white p-4 rounded-2xl shadow-xl border border-nova-navy-800 items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-nova-cyan/20 flex items-center justify-center text-nova-cyan">
+                <Smile className="w-6 h-6" />
+              </div>
+              <div>
+                <p className="text-lg font-black tracking-tight">+3,800</p>
+                <p className="text-[10px] uppercase tracking-wider text-nova-slate-light font-semibold">
+                  Sonrisas Transformadas
+                </p>
               </div>
             </div>
           </div>

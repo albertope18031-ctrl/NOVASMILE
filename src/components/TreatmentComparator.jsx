@@ -8,19 +8,19 @@ export function TreatmentComparator({ onSelectTreatmentForBooking }) {
   const selectedCategory = comparatorCategories.find((c) => c.id === activeCategory);
 
   return (
-    <section id="comparador" className="py-16 lg:py-24 bg-nova-ice border-b border-nova-slate-border">
+    <section id="comparador" className="py-16 lg:py-24 bg-white border-b border-nova-slate-border scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Encabezado */}
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-nova-slate-border text-nova-navy text-xs font-bold uppercase tracking-wider">
+        <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-nova-navy-50 text-nova-teal text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5 text-nova-cyan" />
-            Transparencia & Opciones Clínicas
+            Decisiones Claras para tu Estilo de Vida
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-nova-navy tracking-tight">
-            Comparador de Tratamientos
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-nova-navy tracking-tight">
+            El Comparador de Estilo de Vida
           </h2>
           <p className="text-sm sm:text-base text-nova-slate">
-            Entiende de forma clara las ventajas, durabilidad y características de cada procedimiento para tomar la mejor decisión con tu especialista.
+            Compara de forma transparente la visibilidad, restricciones de alimentos, higiene y tiempos entre los tratamientos más solicitados.
           </p>
         </div>
 
