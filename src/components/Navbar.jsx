@@ -23,7 +23,7 @@ export function Navbar({ onOpenBooking, onOpenEmergency, onScrollToTriage }) {
           <div className="flex items-center gap-4">
             <button
               onClick={onOpenEmergency}
-              className="text-amber-300 hover:text-amber-200 font-medium flex items-center gap-1 transition-colors"
+              className="text-nova-gold hover:text-nova-gold-light font-medium flex items-center gap-1 transition-colors"
             >
               <AlertCircle className="w-3.5 h-3.5" />
               <span>¿Molestia activa o dolor agudo? Atención prioritaria</span>

@@ -33,7 +33,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-nova-ice text-nova-navy flex flex-col font-sans selection:bg-nova-cyan selection:text-white">
+    <div className="min-h-screen bg-nova-ice text-nova-text flex flex-col font-sans selection:bg-nova-mint selection:text-white">
       {/* Barra de Navegación Institucional */}
       <Navbar
         onOpenBooking={() => handleOpenBooking()}

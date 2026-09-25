@@ -34,7 +34,7 @@ export function Footer({ onScrollToTriage, onOpenBooking, onOpenEmergency }) {
             </p>
 
             <div className="pt-2 flex items-center gap-3 text-xs text-nova-slate-light">
-              <ShieldCheck className="w-4 h-4 text-nova-cyan" />
+              <ShieldCheck className="w-4 h-4 text-nova-gold" />
               <span>Instalaciones con estándares médicos certificados</span>
             </div>
           </div>

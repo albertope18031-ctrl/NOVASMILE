@@ -59,7 +59,7 @@ export function TreatmentComparator({ onSelectTreatmentForBooking }) {
             <div className="space-y-6">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-nova-cyan-light text-nova-cyan-dark">
+                  <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-nova-gold-light text-nova-gold-dark border border-nova-gold/30">
                     {selectedCategory.optionA.badge}
                   </span>
                   <h4 className="text-xl font-extrabold text-nova-navy mt-2.5">

@@ -22,7 +22,7 @@ export function Hero({ onOpenBooking, onScrollToTriage, onOpenEmergency }) {
             {/* Titular Principal Oficial */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-nova-navy leading-[1.12]">
               La ciencia de tu salud bucal.{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-nova-cyan to-nova-cyan-dark">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-nova-teal to-nova-cyan">
                 El arte de tu mejor sonrisa.
               </span>
             </h1>
@@ -94,8 +94,8 @@ export function Hero({ onOpenBooking, onScrollToTriage, onOpenEmergency }) {
                     <p className="text-xs text-nova-slate">Clínica Odontológica & Estética</p>
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-nova-cyan bg-nova-cyan/10 px-2.5 py-1 rounded-full">
-                  <ShieldCheck className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center gap-1 text-[11px] font-bold text-nova-gold bg-nova-gold/10 border border-nova-gold/20 px-2.5 py-1 rounded-full shadow-sm">
+                  <ShieldCheck className="w-3.5 h-3.5 text-nova-gold" />
                   Certificación 3D
                 </span>
               </div>

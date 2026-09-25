@@ -44,7 +44,7 @@ export function TrustSection({ onOpenBooking }) {
                 </div>
 
                 <div className="pt-4 border-t border-slate-100">
-                  <span className="text-xs font-semibold text-nova-cyan flex items-center gap-1">
+                  <span className="text-xs font-semibold text-nova-gold flex items-center gap-1">
                     Garantía de calidad médica ✓
                   </span>
                 </div>

@@ -122,7 +122,7 @@ export function TriageWizard() {
             </div>
             <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-nova-cyan to-nova-cyan-dark transition-all duration-300 rounded-full"
+                className="h-full bg-gradient-to-r from-nova-teal to-nova-cyan transition-all duration-300 rounded-full"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
